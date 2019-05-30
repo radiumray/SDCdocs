@@ -8,7 +8,9 @@ Welcome to SDCdocs's documentation!
 
 .. toctree::
    :maxdepth: 1
-   
+   :caption: Contents:
+
+   contents
    helloworld
 
 Indices and tables
