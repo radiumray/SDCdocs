@@ -222,14 +222,14 @@ if __name__ == '__main__':
                                 blit=True, interval=25)
 
     sys.exit(app.exec_())
-    ```
+```
+   
     
+pid:
     
-    pid:
+```py
     
-    ```py
-    
-    #!/usr/bin/python
+#!/usr/bin/python
 #
 # This file is part of IvPID.
 # Copyright (C) 2015 Ivmech Mechatronics Ltd. <bilgi@ivmech.com>
