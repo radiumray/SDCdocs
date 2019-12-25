@@ -1,5 +1,5 @@
 
-
+https://www.cnblogs.com/raina/p/11365854.html
 
 
 ```bash
@@ -21,6 +21,10 @@ sudo apt update
 sudo apt install libjasper1 libjasper-dev
 
 
+cd /xxxxx/xxxxx/opencv-4.1.1
+sudo mkdir build
+cd build
+
 sudo cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D CMAKE_INSTALL_PREFIX=/usr/local \
 -D OPENCV_EXTRA_MODULES_PATH=/home/md/opencv_contrib-4.1.1/modules \
@@ -30,5 +34,11 @@ sudo cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D WITH_OPENGL=ON \
 -D WITH_VTK=ON \
 -D OPENCV_GENERATE_PKGCONFIG=YES ..
+
+
+
+sudo make -j4
+
+sudo make install
 
 ```
