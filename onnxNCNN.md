@@ -13,12 +13,12 @@ make install
 
 ```
 
-##安装onnx-simplifier
+## 安装onnx-simplifier
 ```bash
 pip install onnx-simplifier
 
 ```
-
+ ## 使用
 ```bash
 
 # 简化模型
