@@ -26,6 +26,6 @@ python -m onnxsim model.onnx model-sim.onnx
 
 # 转换成ncnn
 # 进入build/tools/onnx,如果编译成功会有onnx2ncnn转换工具
-onnx2ncnn model-sim.onnx model.param model.bin
+./onnx2ncnn model-sim.onnx model.param model.bin
 
 ```
