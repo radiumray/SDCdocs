@@ -29,7 +29,7 @@ python -m onnxsim model.onnx model-sim.onnx
 ./onnx2ncnn model-sim.onnx model.param model.bin
 
 # caff转换成ncnn
-caffe2ncnn mobilnet_yolo_deploy.prototxt mobilenet_yolo_deploy_iter_80000.caffemodel mobile_yolo.param mobilenet_yolo.bin
+./caffe2ncnn mobilnet_yolo_deploy.prototxt mobilenet_yolo_deploy_iter_80000.caffemodel mobilenet_yolo.param mobilenet_yolo.bin
 
 
 ```
