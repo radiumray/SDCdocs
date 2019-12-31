@@ -42,3 +42,26 @@ sudo make -j4
 sudo make install
 
 ```
+
+/opt/Qt5.13.0/5.13.0/gcc_64/lib/cmake/Qt5是我Qt的Qt5Config.cmake所在路径, 需要改成你自己的, 如果不需要opencv支持Qt用户界面, 可以把-D WITH_QT=ON \和-D CMAKE_PREFIX_PATH=/opt/Qt5.13.0/5.13.0/gcc_64/lib/cmake/Qt5 \两行删掉.
+另外, 不指定"Qt5Config.cmake"所在路径, 在cmake编译的时候可能会报如下错误:
+
+CMake Error at cmake/OpenCVFindLibsGUI.cmake:18 (find_package):
+Could not find a package configuration file provided by "Qt5" with any of
+the following names:
+
+ Qt5Config.cmake
+ qt5-config.cmake
+Add the installation prefix of "Qt5" to CMAKE_PREFIX_PATH or set "Qt5_DIR"
+to a directory containing one of the above files. If "Qt5" provides a
+separate development package or SDK, be sure it has been installed.
+
+4. 配置OpenCV环境
+sudo gedit /etc/ld.so.conf.d/opencv.conf
+在文件最后添加
+
+/usr/local/lib
+生效配置:
+
+sudo ldconfig
+
