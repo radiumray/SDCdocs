@@ -2,7 +2,10 @@
 http://download.qt.io/archive/qt/5.13/5.13.2/qt-opensource-linux-x64-5.13.2.run
 
 ## 安装：
+```bash
+sudo chmod 777 ./qt-opensource-linux-x64-5.13.2.run
 ./qt-opensource-linux-x64-5.13.2.run
+```
 
 ## QtCreator设置野火iMx6开发板提供的qt交叉编译套件
 https://www.cnblogs.com/GregTse/p/11892287.html
