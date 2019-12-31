@@ -49,6 +49,10 @@ sudo cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D OPENCV_GENERATE_PKGCONFIG=YES ..
 '''
 
+sudo apt-get install cmake-qt-gui
+进入opencv的build
+sudo cmake-gui ..
+解决下载boostdesc_bgm.i之类的问题
 
 sudo make -j4
 
