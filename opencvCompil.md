@@ -58,6 +58,10 @@ sudo make -j4
 
 sudo make install
 
+sudo sh -c 'echo "/usr/local/lib" > /etc/ld.so.conf.d/opencv.conf'
+sudo ldconfig
+
+
 ```
 
 /opt/Qt5.13.0/5.13.0/gcc_64/lib/cmake/Qt5是我Qt的Qt5Config.cmake所在路径, 需要改成你自己的, 如果不需要opencv支持Qt用户界面, 可以把-D WITH_QT=ON \和-D CMAKE_PREFIX_PATH=/opt/Qt5.13.0/5.13.0/gcc_64/lib/cmake/Qt5 \两行删掉.
