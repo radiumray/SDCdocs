@@ -27,7 +27,7 @@ cd build
 
 sudo cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D CMAKE_INSTALL_PREFIX=/usr/local \
--D OPENCV_EXTRA_MODULES_PATH=/home/md/opencv_contrib-4.1.1/modules \
+-D OPENCV_EXTRA_MODULES_PATH=/home/[xxxxxxx]/opencv_contrib-4.1.1/modules \
 -D WITH_TBB=ON \
 -D WITH_V4L=ON \
 -D WITH_GTK=ON \
@@ -38,8 +38,8 @@ sudo cmake -D CMAKE_BUILD_TYPE=RELEASE \
 '''
 sudo cmake -D CMAKE_BUILD_TYPE=RELEASE \
 -D CMAKE_INSTALL_PREFIX=/usr/local \
--D OPENCV_EXTRA_MODULES_PATH=/home/md/opencv_contrib-4.1.1/modules \
--D CMAKE_PREFIX_PATH=/home/mdlinux/Qt5.13.2/5.13.2/gcc_64/lib/cmake/Qt5 \
+-D OPENCV_EXTRA_MODULES_PATH=/home/[xxxxxxx]/opencv_contrib-4.1.1/modules \
+-D CMAKE_PREFIX_PATH=/home/[xxxxxxx]/Qt5.13.2/5.13.2/gcc_64/lib/cmake/Qt5 \
 -D WITH_TBB=ON \
 -D WITH_V4L=ON \
 -D WITH_QT=ON \
