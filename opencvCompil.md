@@ -1,7 +1,6 @@
 
 https://www.cnblogs.com/raina/p/11365854.html
 
-
 ```bash
 
 sudo apt-get install build-essential
@@ -77,7 +76,7 @@ Add the installation prefix of "Qt5" to CMAKE_PREFIX_PATH or set "Qt5_DIR"
 to a directory containing one of the above files. If "Qt5" provides a
 separate development package or SDK, be sure it has been installed.
 
-4. 配置OpenCV环境
+配置OpenCV环境
 sudo gedit /etc/ld.so.conf.d/opencv.conf
 在文件最后添加
 
