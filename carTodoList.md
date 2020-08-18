@@ -6,13 +6,7 @@
 + 测试车道线模型帧率
 
 
-
-
-
-
 ```
-
-
 
 
 ## 查看串口就接收数据
@@ -33,4 +27,13 @@ $ sudo cutecom
 插入串口后，使用以下命令查看串口驱动是否已经安装：
 
 $ dmesg | grep usb
+```
+
+## Putty
+
+```bash
+
+安装：sudo apt-get install putty
+打开方式都一样：sudo putty
+
 ```
