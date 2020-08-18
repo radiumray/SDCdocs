@@ -11,3 +11,13 @@
 
 
 ```
+
+
+
+
+
+```bash
+
+socat file:/dev/ttyUSB0,b115200,inlcr=1  stdout
+
+```
