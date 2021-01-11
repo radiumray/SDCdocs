@@ -17,3 +17,23 @@ os.system("gnome-terminal -e 'bash ./LRSDK/DriveHAL/DriveHAL.sh'")
 
 
 ```
+
+## 车体模块
+```python
+
+from LRSDK.application import Application
+
+app = Application(fps=25, operate_mode="ManualDrive")
+
+
+# 图形块样式
++--+     +-----------------------------------------------+
+|  +-----+                                               |
+|      车体:fps ( 26 )   operate_mode: | ManualDrive |    |
+|                                       | AutoDrive |    |
+|                                       | AutoDrive_ui | |
++--+      +----------------------------------------------+
+   +------+
+
+
+```
