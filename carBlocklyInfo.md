@@ -323,3 +323,121 @@ angle, throttle = drive_model.predict_image(frame_wide_drive)
 
 
 ```
+
+
+## 行人识别模块
+### 行人识别实例化
+
+```python
+# 引用openvino的行人识别模型
+from baseModels.vino.vino_pedestrain_detector import PedestrainDetector
+
+# 实例化行人模块
+pedestrain_detector_obj = PedestrainDetector()
+
+# 图形块样式
++--+     +-----------------+
+|  +-----+                 |
+|      行人模型             |
++--+      +----------------+
+   +------+
+
+```
+
+### 行人识别方法
+
+```python
+
+# 运行行人识别预处理
+input_img = pedestrain_detector_obj.preprocess_img(frame_wide_person)
+# 预测图像中行人的框图
+out = pedestrain_detector_obj.predict(input_img)
+# 在图像上画出框图, 并显示时候有人状态
+drawed_frame_person, has_pedestrain = pedestrain_detector_obj.draw_box(out)
+
+# 输入frame_wide_person：为numpy array 图像
+# 输出drawed_frame_person, has_pedestrain: 
++ drawed_frame_person:为显示框图，类型为numpy array 图像
++ has_pedestrain:为bool类型，代表图片中是否有行人
+
+# 图形块样式
+    +----------------------------------------+
+    |                                        |
++---+                                        |
+|          模型模型.预测(frame_wide_person)   |
++---+                                        |
+    |                                        |
+    +----------------------------------------+
+
+
+```
+
+
+
+## 红绿灯识别模块
+### 红绿灯识别实例化
+
+```python
+
+# 调用opencv级联分类器用来定位红绿灯
+from baseModels.signal_light.cv_get_signal_light_area import CvSignalLight
+# 调用红绿灯分类模型区分红,黄,绿灯
+from baseModels.signal_light.keras_detect_signal_light import KerasSignalLight
+
+# 实例化opencv级联分类器
+cv_obj = CvSignalLight()
+# 实例化红绿灯分类模型
+keras_obj = KerasSignalLight()
+# 调用红绿灯分类模型
+keras_obj.load_model("./baseModels/signal_light/classification/models/signal_light_model.h5")
+
+
+# 图形块样式
++--+     +---------------------------------------------------------------------------------------+
+|  +-----+                                                                                       |
+|      红绿灯模型：地址 (./baseModels/signal_light/classification/models/signal_light_model.h5)   |
++--+      +--------------------------------------------------------------------------------------+
+   +------+
+
+```
+
+### 红绿灯识别方法
+
+```python
+
+# 定义一个函数用来完善红绿灯模型
+def getTrafficLightResult(frame_normal_light):
+	label = None
+	# 得到红绿灯的框坐标
+	signal_frame, box = cv_obj.get_signal_light(frame_normal_light)
+	# 如果有框则框出红绿灯
+	if box != ():
+		# 对框出的红绿灯进行分类
+		label = keras_obj.detect_each(signal_frame)
+		# 在原图中框出红绿灯
+		cv_frame_drawed = cv_obj.draw_box_label(frame_normal_light, box, label)
+		detect_frame = cv_frame_drawed
+	else:
+		detect_frame = frame_normal_light
+	return detect_frame, label
+	
+# 调用红绿灯识别函数
+detect_frame, label = getTrafficLightResult(frame_normal_light)
+
+# 输入是图像
+# 输出：
++ detect_frame：为识别的红绿灯图像，没有则是原图
++ label：为识别红绿灯的类型(red, yellow, green),没有则是None
+
+
+# 图形块样式
+    +------------------------------------------+
+    |                                          |
++---+                                          |
+|          模型模型.预测(frame_normal_light)    |
++---+                                          |
+    |                                          |
+    +------------------------------------------+
+
+
+```
