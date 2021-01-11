@@ -20,6 +20,7 @@ os.system("gnome-terminal -e 'bash ./LRSDK/DriveHAL/DriveHAL.sh'")
 ```
 
 ## 车体模块
+### 车体实例化
 ```python
 
 # 车体模块依赖包引用
@@ -38,7 +39,9 @@ app = Application(fps=25, operate_mode="ManualDrive")
 |                                       | AutoDrive_ui | |
 +--+      +----------------------------------------------+
    +------+
-
+```
+### 车体方法
+```python
 # 车体模块运行方法
 app.run(自定义方法名：例如procedure)
 
@@ -52,6 +55,7 @@ app.run(自定义方法名：例如procedure)
 ```
 
 ## 控制模块
+### 控制实例化
 ```python
 
 # 控制模块依赖包引用
@@ -66,7 +70,9 @@ control = AppController()
 |      控制模块                 |
 +--+      +--------------------+
    +------+
-
+```
+### 控制方法
+```python
 # 控制 运动方法
 control.angle = 0.5 #左拐
 control.throttle  = 0.1 #向前速度为0.1
@@ -85,6 +91,9 @@ control.throttle  = 0.1 #向前速度为0.1
 +--+      +-----------------------------+
    +------+
 
+```
+### 控制返回
+```python
 # 返回 控制实例
 return control
 
