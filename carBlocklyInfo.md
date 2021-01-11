@@ -498,3 +498,36 @@ frame_drawed_stop, label_list = KerasSign_obj.run_threaded(frame_normal_stop)
 
 
 
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
++ 速度方向控制
+
+```python
+import os
+import time
+from LRSDK.application import Application
+from LRSDK.appController import AppController
+
+# 通过终端向驱动控制板发送串口指令
+os.system("gnome-terminal -e 'bash ./LRSDK/DriveHAL/DriveHAL.sh'") #连接小车主板
+app = Application(fps=25, operate_mode="ManualDrive")
+control = AppController()
+
+start = time.time() #开始时间
+def drive_fun():
+    global start #使用上面定义好的全局变量start
+    end = time.time() # 更新当前时间
+
+    if (end-start) <= 1: #前1秒
+        control.angle = 1 #左拐
+        control.throttle  = 0.1 #向前速度为0.1
+    elif (end-start) > 1 and (end-start) <= 2: # 1到2秒
+        control.angle = 0 # 直走
+        control.throttle  = 0 #向前速度为 0.1
+    else: #2秒之后
+        start = time.time() # 更新开始时间
+
+    return control
+app.run(drive_fun)
+
+```
