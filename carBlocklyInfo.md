@@ -130,7 +130,7 @@ frame_wide_drive = app.resize(frame_wide_drive, (224, 224))
     +--------------------------------------+
     |                                      |
 +---+                                      |
-|          车体.摄像头缩放: (0, 0)          |
+|          车体.摄像头缩放: (224, 224)          |
 +---+                                      |
     |                                      |
     +--------------------------------------+
@@ -149,10 +149,6 @@ app.show_image(window_name="frame_wide", frame=frame_wide_drive, show_fps=True)
 
 
 ```
-
-
-
-
 
 
 
@@ -238,4 +234,39 @@ def procedure():
 
 ```
 
+## 数据存储模块
+### 数据存储实例化
 
+```python
+# 调用数据存储模块
+from LRSDK.dataStore import DataStore
+
+# 实例化数据存储模块,设置存储路径
+data_store = DataStore(data_folder="./data")
+
+# 图形块样式
++--+     +------------------------+
+|  +-----+                        |
+|      数据模块 存储地址:(./data)  |
++--+      +-----------------------+
+   +------+
+
+
+```
+
+### 数据存储方法
+```python
+# 将当前图像和对应的指令标签存贮到指定目录用于后续训练(一张图片对应一个标签)
+data_store.save(frame_wide_drive, angle, throttle)
+# frame_wide_drive 处理后的采集图片，类型为 numpy array
+# angle 遥控器针对此图片的角度, 类型为小数(-1~1)
+# throttle 遥控器针对此图片的速度, 类型为小数(-1~1)
+
+# 图形块样式
++--+     +-------------------------------------------+
+|  +-----+                                           |
+|      数据.保存（frame_wide_drive, angle, throttle） |
++--+      +------------------------------------------+
+   +------+
+
+```
