@@ -54,7 +54,7 @@ app.run(自定义方法名：例如procedure)
    +-----+
 
 ```
-#### 车体遥控器
+>>>> #### 车体遥控器
 ```python
 # 车体遥控器获取方法, 获取角度与速度指令 （返回值为2个小数值，范围 -1~1 ）
 angle, throttle = app.get_joystick_info()
@@ -70,7 +70,7 @@ angle, throttle = app.get_joystick_info()
 
 ```
 
-#### 车体摄像头
+>>>> #### 车体摄像头
 ```python
 # 设置启用名为wideAngle的摄像头, 也就是车上的冲下方的广角摄像头
 app.setup_camera(dev_name="/dev/wideAngle")
@@ -161,8 +161,8 @@ app.web_video_broadcast(frame_list=[frame_wide_drive])
 ```
 
 
-## 控制模块
-### 控制实例化
+>> ## 控制模块
+>>> ### 控制实例化
 ```python
 
 # 控制模块依赖包引用
@@ -178,7 +178,7 @@ control = AppController()
 +--+     +---------------------+
    +-----+
 ```
-### 控制方法
+>>> ### 控制方法
 ```python
 # 控制 运动方法
 control.angle = 0.5 #左拐
@@ -199,7 +199,7 @@ control.throttle  = 0.1 #向前速度为0.1
    +-----+
 
 ```
-### 控制返回
+>>> ### 控制返回
 ```python
 # 返回 控制实例
 return control
@@ -216,7 +216,7 @@ return control
 
 ```
 
-## 自定义功能
+>> ## 自定义功能
 ```python
 # 定义用户实现逻辑
 def procedure():
@@ -243,8 +243,8 @@ def procedure():
 
 ```
 
-## 数据存储模块
-### 数据存储实例化
+>> ## 数据存储模块
+>>> ### 数据存储实例化
 
 ```python
 # 调用数据存储模块
@@ -263,7 +263,7 @@ data_store = DataStore(data_folder="./data")
 
 ```
 
-### 数据存储方法
+>>> ### 数据存储方法
 ```python
 # 将当前图像和对应的指令标签存贮到指定目录用于后续训练(一张图片对应一个标签)
 data_store.save(frame_wide_drive, angle, throttle)
@@ -281,8 +281,8 @@ data_store.save(frame_wide_drive, angle, throttle)
 ```
 
 
-## 模型推理模块
-### 模型推理实例化
+>> ## 模型推理模块
+>>> ### 模型推理实例化
 
 ```python
 # 引用自动驾驶模型模块
@@ -304,7 +304,7 @@ drive_model = DriveModel(model_path=model_path)
 
 ```
 
-### 模型推理方法
+>>> ### 模型推理方法
 
 ```python
 
@@ -325,8 +325,8 @@ angle, throttle = drive_model.predict_image(frame_wide_drive)
 ```
 
 
-## 行人识别模块
-### 行人识别实例化
+>> ## 行人识别模块
+>>> ### 行人识别实例化
 
 ```python
 # 引用openvino的行人识别模型
@@ -344,7 +344,7 @@ pedestrain_detector_obj = PedestrainDetector()
 
 ```
 
-### 行人识别方法
+>>> ### 行人识别方法
 
 ```python
 
@@ -373,9 +373,8 @@ drawed_frame_person, has_pedestrain = pedestrain_detector_obj.draw_box(out)
 ```
 
 
-
-## 红绿灯识别模块
-### 红绿灯识别实例化
+>> ## 红绿灯识别模块
+>>> ### 红绿灯识别实例化
 
 ```python
 
@@ -401,7 +400,7 @@ keras_obj.load_model("./baseModels/signal_light/classification/models/signal_lig
 
 ```
 
-### 红绿灯识别方法
+>>> ### 红绿灯识别方法
 
 ```python
 
@@ -444,8 +443,8 @@ detect_frame, label = getTrafficLightResult(frame_normal_light)
 
 
 
-## 停止标志识别模块
-### 停止标志识别实例化
+>> ## 停止标志识别模块
+>>> ### 停止标志识别实例化
 
 ```python
 
@@ -470,7 +469,7 @@ t.start()
 
 ```
 
-### 停止标志识别方法
+>>> ### 停止标志识别方法
 
 ```python
 
@@ -497,10 +496,10 @@ frame_drawed_stop, label_list = KerasSign_obj.run_threaded(frame_normal_stop)
 
 
 
-
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+> # 示例代码 
 
-> 速度方向控制
+>> 速度方向控制
 
 ```python
 import os
@@ -532,7 +531,7 @@ app.run(drive_fun)
 
 ```
 
-> 遥控器接收指令
+>> 遥控器接收指令
 
 ```python
 
@@ -555,7 +554,7 @@ app.run(collect_fun)
 
 ```
 
-> 遥控车体验
+>> 遥控车体验
 ```python
 
 from LRSDK.application import Application
@@ -579,7 +578,7 @@ app.run(collect_fun)
 
 ```
 
-> 摄像头相关
+>> 摄像头相关
 
 ```python
 
@@ -609,7 +608,7 @@ app.run(collect_fun)
 ```
 
 
-> 数据存储
+>> 数据存储
 
 ```python
 
@@ -647,7 +646,7 @@ app.run(collect_fun)
 ```
 
 
-> 遥控采集数据
+>> 遥控采集数据
 
 ```python
 
@@ -692,7 +691,7 @@ app.run(collect_fun)
 
 ```
 
-> 推理模型
+>> 推理模型
 
 ```python
 
@@ -735,7 +734,7 @@ app.run(autoDrive_fun)
 ```
 
 
-> 行人识别
+>> 行人识别
 
 ```python
 
@@ -781,7 +780,7 @@ app.run(autoDrive_fun)
 
 ```
 
-> 红绿灯识别
+>> 红绿灯识别
 ```python
 
 from LRSDK.application import Application
@@ -839,7 +838,7 @@ app.run(autoDrive_fun)
 
 ```
 
-> 停止标志识别
+>> 停止标志识别
 ```python
 
 from threading import Thread
