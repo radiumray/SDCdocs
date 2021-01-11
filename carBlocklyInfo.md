@@ -316,7 +316,7 @@ angle, throttle = drive_model.predict_image(frame_wide_drive)
     +-----------------------------------+
     |                                   |
 +---+                                   |
-|          模型.预测(frame_wide_drive)   |
+|          推理模块.预测(frame_wide_drive)   |
 +---+                                   |
     |                                   |
     +-----------------------------------+
@@ -364,7 +364,7 @@ drawed_frame_person, has_pedestrain = pedestrain_detector_obj.draw_box(out)
     +----------------------------------------+
     |                                        |
 +---+                                        |
-|          模型模型.预测(frame_wide_person)   |
+|          行人模型.预测(frame_wide_person)   |
 +---+                                        |
     |                                        |
     +----------------------------------------+
@@ -434,10 +434,67 @@ detect_frame, label = getTrafficLightResult(frame_normal_light)
     +------------------------------------------+
     |                                          |
 +---+                                          |
-|          模型模型.预测(frame_normal_light)    |
+|          红绿灯模型.预测(frame_normal_light)  |
 +---+                                          |
     |                                          |
     +------------------------------------------+
 
 
 ```
+
+
+
+## 停止标志识别模块
+### 停止标志识别实例化
+
+```python
+
+# 引用停止标示模型模块
+from baseModels.ssd_keras.keras_detect_sign import KerasSign
+
+# 实例化停止标示模型
+KerasSign_obj = KerasSign()
+# 加载停止标示模型
+KerasSign_obj.loadModel(model_path="./baseModels/ssd_keras/weights/sign_model.h5")
+# 定义一个线程运行此模型运行
+t = Thread(target=KerasSign_obj.update, args=())
+# 启动线程
+t.start()
+
+# 图形块样式
++--+     +-------------------------------------------------------------------+
+|  +-----+                                                                   |
+|      停止标志模型：地址 (./baseModels/ssd_keras/weights/sign_model.h5)      |
++--+      +------------------------------------------------------------------+
+   +------+
+
+```
+
+### 停止标志识别方法
+
+```python
+
+# 线程运行停止标示模型
+frame_drawed_stop, label_list = KerasSign_obj.run_threaded(frame_normal_stop)
+
+# 输入是图像
+# 输出：
++ frame_normal_stop：为识别的红绿灯图像，没有则是原图
++ label_list：为list类型 if label_list != []: print('stop') 用来判断是否有停止标志
+
+
+# 图形块样式
+    +------------------------------------------+
+    |                                          |
++---+                                          |
+|          停止标志模型.预测(frame_normal_stop) |
++---+                                          |
+    |                                          |
+    +------------------------------------------+
+
+
+```
+
+
+
+
