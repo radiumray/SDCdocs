@@ -146,10 +146,19 @@ app.show_image(window_name="frame_wide", frame=frame_wide_drive, show_fps=True)
 +--+      +---------------------+
    +------+
 
+# 发送图像到网页服务
+app.web_video_broadcast(frame_list=[frame_wide_drive])
+# frame_list 为一个数组列表
+# [frame_wide_drive] 为数组有一个元素的情况，最多两个， frame_wide_drive为 numpy array类型
 
+# 图形块样式
++--+     +-------------------------------+
+|  +-----+                               |
+|      车体.网页广播(frame_wide_drive)    |
++--+      +------------------------------+
+   +------+
 
 ```
-
 
 
 ## 控制模块
