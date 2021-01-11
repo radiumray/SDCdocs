@@ -500,7 +500,7 @@ frame_drawed_stop, label_list = KerasSign_obj.run_threaded(frame_normal_stop)
 
 -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-+ 速度方向控制
+> 速度方向控制
 
 ```python
 import os
@@ -529,5 +529,28 @@ def drive_fun():
 
     return control
 app.run(drive_fun)
+
+```
+
+> 遥控器接收指令
+
+```python
+
+from LRSDK.application import Application
+from LRSDK.appController import AppController
+
+app = Application(fps=25)
+control = AppController()
+
+def collect_fun():
+    # 获取遥控器数据
+    angle, throttle = app.get_joystick_info()
+    # 打印方向和速度信息
+    print('angle:', angle)
+    print('throttle:', throttle)
+
+    return control
+
+app.run(collect_fun)
 
 ```
