@@ -36,7 +36,6 @@ app = Application(fps=25, operate_mode="ManualDrive")
 |  +-----+                                               |
 |      车体:fps ( 25 )   operate_mode: | ManualDrive |    |
 |                                       | AutoDrive |    |
-|                                       | AutoDrive_ui | |
 +--+     +-----------------------------------------------+
    +-----+
 ```
