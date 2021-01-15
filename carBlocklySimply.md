@@ -4,6 +4,7 @@
 ```python
 
 import os
+import time
 # 启用驱动
 os.system("gnome-terminal -e 'bash ./LRSDK/DriveHAL/DriveHAL.sh'") 
 # 车体模块依赖包引用
@@ -74,6 +75,23 @@ control.throttle  = 0.1 #向前速度为0.1
 |  +-----+                              |
 |      控制: 方式: | angle |   值（0.5） |
 |                  | throttle |         |
++--+     +------------------------------+
+   +-----+
+
+
+
+# 控制 速度 () 运动 () 秒
+control.throttle  = 0.3 #向前速度为0.3
+app.mqtt_publish(control.angle, control.throttle)
+time.sleep(5)
+control.throttle = 0
+app.mqtt_publish(control.angle, control.throttle)
+
+# 图形块样式
++--+     +------------------------------+
+|  +-----+                              |
+|      控制: 速度: （0.3）运行（5）秒     |
+|                                       |
 +--+     +------------------------------+
    +-----+
 
