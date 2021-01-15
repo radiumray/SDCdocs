@@ -258,13 +258,6 @@ from baseModels.vino.vino_pedestrain_detector import PedestrainDetector
 # 实例化行人模块
 pedestrain_detector_obj = PedestrainDetector()
 
-# 图形块样式
-+--+     +-----------------+
-|  +-----+                 |
-|      行人模型             |
-+--+     +-----------------+
-   +-----+
-
 ```
 
 >>> ### 行人识别方法
