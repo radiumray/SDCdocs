@@ -1,6 +1,5 @@
 > # 图形块基础功精简版能说明
 
-
 >> ## 车初始化
 ```python
 
@@ -18,6 +17,8 @@ control = AppController()
 
 # 设置启用名为wideAngle的摄像头, 也就是车上的冲下方的广角摄像头
 app.setup_camera(dev_name="/dev/wideAngle")
+# 设置启用名为normal的摄像头，平视摄像头
+app.setup_camera(dev_name="/dev/normal")
 
 # 图形块样式
 +--+     +-------------------+
@@ -84,31 +85,124 @@ control.throttle  = 0.1 #向前速度为0.1
 ```python
 # 获取广角摄像头图像
 frame_wide_drive = app.get_image(dev_name="/dev/wideAngle")
-# 截取摄像头图像区域,起始坐标为(0, 0), 终止坐标为(640, 380)
-frame_wide_drive = app.cut_active_area(frame_wide_drive, coordinate_start=(0, 0), coordinate_end=(640, 380), padding=False)
-# 改变图像大小为(224, 224)
-frame_wide_drive = app.resize(frame_wide_drive, (224, 224))
+参数：
+/dev/wideAngle 为 广角摄像头
+/dev/normal 为 平视摄像头
 
 # 图形块样式
     +----------------------------------------------+
     |                                              |
 +---+                                              |
-|          车体.获取摄像头地址: (/dev/wideAngle)    |
-+---+                                              |
+|          车体获取. | /dev/wideAngle |             |
++---+                | /dev/normal |               |
     |                                              |
     +----------------------------------------------+
+
 
 # 显示图像
 app.show_image(window_name="frame_wide_drive", frame=frame_wide_drive, show_fps=True)
 
 # 图形块样式
-+--+     +----------------------+
-|  +-----+                      |
-|      车体.摄像头显示           |
-+--+     +----------------------+
++--+     +------------------------------------------+
+|  +-----+                                          |
+|      车体.摄像头显示（frame_wide_drive）           |
++--+     +------------------------------------------+
    +-----+
 
 ```
+
+
+>> ## 预处理
+>>> ### # 自动驾驶预处理
+```python
+
+# 截取摄像头图像区域,起始坐标为(0, 0), 终止坐标为(640, 380)
+frame_wide_drive = app.cut_active_area(frame_wide_drive, coordinate_start=(0, 0), coordinate_end=(640, 380), padding=False)
+# 改变图像大小为(224, 224)
+frame_wide_drive = app.resize(frame_wide_drive, (224, 224))
+参数：
+	获取图像
+输出：
+	处理图像
+
+# 图形块样式
+    +----------------------------------------------+
+    |                                              |
++---+                                              |
+|          自动驾驶预处理（frame）                  |
++---+                                              |
+    |                                              |
+    +----------------------------------------------+
+
+```
+
+>>> ### 行人识别预处理
+```python
+# 调整图像尺寸
+frame_wide_person = app.resize(frame_wide_person, (520, 390))
+# 截取图像区域
+frame_wide_person = app.cut_active_area(frame_wide_person, coordinate_start=(0, 180), coordinate_end=(520, 390),
+				    padding=True)
+
+参数：
+	获取图像
+输出：
+	处理图像
+
+# 图形块样式
+    +----------------------------------------------+
+    |                                              |
++---+                                              |
+|          行人识别预处理（frame）                  |
++---+                                              |
+    |                                              |
+    +----------------------------------------------+
+```
+
+>>> ### 红绿灯识别预处理
+```python
+# 调整图像大小
+frame_normal_light = app.resize(frame_normal_light, (520, 390))
+# 截取图像区域
+frame_normal_light = app.cut_active_area(frame_normal_light, coordinate_start=(0, 0), coordinate_end=(520, 150))
+
+参数：
+	获取图像
+输出：
+	处理图像
+
+# 图形块样式
+    +----------------------------------------------+
+    |                                              |
++---+                                              |
+|          红绿灯识别预处理（frame）                 |
++---+                                              |
+    |                                              |
+    +----------------------------------------------+
+
+```
+
+>>> ### 标识牌识别预处理
+```python
+frame_normal_stop = app.resize(frame_normal_stop, (520, 390))
+
+参数：
+	获取图像
+输出：
+	处理图像
+
+# 图形块样式
+    +----------------------------------------------+
+    |                                              |
++---+                                              |
+|          标识牌识别预处理（frame）                 |
++---+                                              |
+    |                                              |
+    +----------------------------------------------+
+
+```
+
+
 
 >> ## 模型推理模块
 >>> ### 模型推理实例化
