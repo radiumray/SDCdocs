@@ -14,7 +14,6 @@ app = Application(fps=25, operate_mode="ManualDrive")
 from LRSDK.appController import AppController
 # 实例化控制模块
 control = AppController()
-
 # 设置启用名为wideAngle的摄像头, 也就是车上的冲下方的广角摄像头
 app.setup_camera(dev_name="/dev/wideAngle")
 # 设置启用名为normal的摄像头，平视摄像头
@@ -140,6 +139,7 @@ frame_normal_light = app.cut_active_area(frame_normal_light, coordinate_start=(0
 # 标识牌识别预处理
 
 frame_normal_stop = app.resize(frame_normal_stop, (520, 390))
+------------------------------------------------------------------------------------------------------------------------------
 参数：
 	获取图像
 输出：
